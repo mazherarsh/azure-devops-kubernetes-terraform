@@ -25,13 +25,13 @@ stages:
 jobs:
     - job: QaDeploy job
       steps:
-        - bash: echo QADeploy job
-        
-- stage:ProdDeploy 
-  jobs:
-    - job: ProdDeploy job
-      steps: 
-      - bash: echo prodDeploy job
+        -bash: echo QADeploy job
+-  stage: ProdDeploy
+   jobs:
+   steps
+    -bash echo prodDeploy 
+       
+         
 
 
 
