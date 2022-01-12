@@ -22,14 +22,14 @@ stages:
         -bash: echo DevDeploy job  
       
 - stage: QADeploy
-jobs:
-    - job: QaDeploy job
+  jobs:
+    - job: QADeploy 
       steps:
         -bash: echo QADeploy job
--  stage: ProdDeploy
-   jobs:
-   steps
-    -bash echo prodDeploy 
+- stage: ProdDeploy
+  jobs:
+    - job: echo ProdDeploy job
+
        
          
 
