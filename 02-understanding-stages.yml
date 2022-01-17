@@ -11,8 +11,19 @@ stages:
   jobs:
     - job: Firstjob
       steps:
-        - bash: echo Build First job 
-        - bash: echo $(PipelineLevelVariable ) 
+        - bash: echo Build First job
+        - bash: echo $(Build.BuildNumber)
+        - bash: echo $(Build.BuildID)
+        - bash: echo $(Build.SourceBranchName)
+        - bash: echo $(System.DefaultWorkingDirectory)
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: '$(System.DefaultWorkingDirectory)'
+            Contents: |
+              **/*.yaml
+              **/*.tf
+            TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
     - job: secondjob
       steps:
         - bash: echo Build second job
