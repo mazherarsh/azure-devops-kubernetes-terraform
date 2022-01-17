@@ -11,12 +11,11 @@ trigger:
       
 pool:
   vmImage: 'ubuntu-latest'
-  demands:
 
 stages:
 - stage: Build 
-  Jobs:
-  - Job: BuildJob
+  jobs:
+  - job: BuildJob
     steps: 
     - bash: echo "Do the build"
 - stage: DevDeploy 
