@@ -27,7 +27,7 @@ stages:
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'Mazher'
-                publishLocation: 'Container'
+              publishLocation: 'Container'
 
     # - job: secondjob
     #   steps:
