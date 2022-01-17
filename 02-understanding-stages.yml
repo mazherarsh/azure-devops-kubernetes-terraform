@@ -16,32 +16,39 @@ stages:
     - job: secondjob
       steps:
         - bash: echo Build second job
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'Mazher'
+            publishLocation: 'Container'
+
+
       
-- stage: DevDeploy
-  variables:
-    environment: dev
-  dependsOn: Build
-  jobs:
-    - job: DevDeployjob
-      steps:
-        - bash: echo  $(environment)Deploy job  
+# - stage: DevDeploy
+#   variables:
+#     environment: dev
+#   dependsOn: Build
+#   jobs:
+#     - job: DevDeployjob
+#       steps:
+#         - bash: echo  $(environment)Deploy job  
       
-- stage: QADeploy
-  variables:
-    environment: dev
-  dependsOn: Build
-  jobs:
-    - job: QADeploy 
-      steps:
-        - bash: echo  $(environment)Deploy job 
-- stage: ProdDeploy
-  dependsOn:
-  - DevDeploy
-  - QADeploy 
-  jobs:
-    - job: ProdDeploy 
-      steps:
-        - bash: echo ProdDeploy Job
+# - stage: QADeploy
+#   variables:
+#     environment: dev
+#   dependsOn: Build
+#   jobs:
+#     - job: QADeploy 
+#       steps:
+#         - bash: echo  $(environment)Deploy job 
+# - stage: ProdDeploy
+#   dependsOn:
+#   - DevDeploy
+#   - QADeploy 
+#   jobs:
+#     - job: ProdDeploy 
+#       steps:
+#         - bash: echo ProdDeploy Job
 
        
          
