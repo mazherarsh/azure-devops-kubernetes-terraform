@@ -1,0 +1,30 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo k8s terraform azure!
+  displayName: 'Run a one-line script'
+-
+- task: DownloadSecureFile@1
+  name: publickey
+  inputs:
+    secureFile: 'azure_rsa.pub'
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret)' -var ssh_public_key=$(publickey.securefilepath)
+    backendType:azurerm
+    backendServiceArm:azure-terraform-resource-service-connection
+    backendAzureRmSubscriptionId:3d08fcd3-b17b-4e8e-b447-69f90216d2d4
+    ensureBackend:true
+    backendAzureRmResourceGroupName:terraform-backend-rg
+    backendAzureRmResourceGroupLocation:westeurope
+    backendAzureRmStorageAccountName:mazherarshin
+    backendAzureRmContainerName:mazherarshincontainer
+    backendAzureRmKey:kubernete-dev.tfstate
+    allowTelemetryCollection :true
