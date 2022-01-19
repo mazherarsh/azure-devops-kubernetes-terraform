@@ -23,7 +23,7 @@ steps:
     backendAzureRmSubscriptionId: '3d08fcd3-b17b-4e8e-b447-69f90216d2d4'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'sayyed-rg'
-    backendAzureRmResourceGroupLocation: 'westeurpe'
+    backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'sayyedaccount'
     backendAzureRmContainerName: 'sayyedcontainer'
     backendAzureRmKey: 'sayyed-dev.tfstate'
