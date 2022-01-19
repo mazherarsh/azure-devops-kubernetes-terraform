@@ -17,7 +17,7 @@ steps:
   inputs:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
-    commandOptions: '-var client_id=$(clinet_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+    #commandOptions: '-var client_id=$(clinet_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     backendType: 'azurerm'
     backendServiceArm: 'azure-terraform-resource-service-connection'
     backendAzureRmSubscriptionId: '3d08fcd3-b17b-4e8e-b447-69f90216d2d4'
@@ -27,4 +27,12 @@ steps:
     backendAzureRmStorageAccountName: 'sayyedaccount'
     backendAzureRmContainerName: 'sayyedcontainer'
     backendAzureRmKey: 'sayyed-dev.tfstate'
+    allowTelemetryCollection: true
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'azure-terraform-resource-service-connection'
+    commandOptions: '-var client_id=$(clinet_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     allowTelemetryCollection: true
